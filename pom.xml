@@ -17,7 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-    <spring-version>6.0.6</spring-version>
+    <spring-version>5.3.26</spring-version>
   </properties>
 
   <dependencies>
@@ -33,11 +33,18 @@
       <artifactId>spring-webmvc</artifactId>
       <version>${spring-version}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
+    <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5 -->
     <dependency>
       <groupId>org.thymeleaf</groupId>
-      <artifactId>thymeleaf-spring6</artifactId>
-      <version>3.1.1.RELEASE</version>
+      <artifactId>thymeleaf-spring5</artifactId>
+      <version>3.0.15.RELEASE</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
     <dependency>
@@ -45,14 +52,12 @@
       <artifactId>spring-jdbc</artifactId>
       <version>${spring-version}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api -->
-    <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
     <dependency>
-      <groupId>jakarta.validation</groupId>
-      <artifactId>jakarta.validation-api</artifactId>
-      <version>3.0.2</version>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.5.1</version>
     </dependency>
-
 
 
   </dependencies>
@@ -97,8 +102,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>8</source>
-          <target>8</target>
+          <source>19</source>
+          <target>19</target>
         </configuration>
       </plugin>
     </plugins>

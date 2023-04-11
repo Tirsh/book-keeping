@@ -4,43 +4,38 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.thymeleaf.spring6.SpringTemplateEngine;
-import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.spring6.view.ThymeleafViewResolver;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan("com.tirsh")
 @EnableWebMvc
-@PropertySource("classpath:db.properties")
 public class SpringConfig implements WebMvcConfigurer {
-    Environment environment;
     ApplicationContext applicationContext;
 
-    public SpringConfig(ApplicationContext applicationContext, Environment env) {
+    public SpringConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
-        this.environment = env;
     }
 
     @Bean
-    public SpringResourceTemplateResolver templateResolver() {
+    public SpringResourceTemplateResolver templateResolver(){
         SpringResourceTemplateResolver springResourceTemplateResolver = new SpringResourceTemplateResolver();
         springResourceTemplateResolver.setApplicationContext(applicationContext);
-        springResourceTemplateResolver.setPrefix("WEB-INF/view");
+        springResourceTemplateResolver.setPrefix("/WEB-INF/view");
         springResourceTemplateResolver.setSuffix(".html");
         return springResourceTemplateResolver;
     }
 
     @Bean
-    public SpringTemplateEngine templateEngine() {
+    public SpringTemplateEngine templateEngine(){
         SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
         springTemplateEngine.setTemplateResolver(templateResolver());
         springTemplateEngine.setEnableSpringELCompiler(true);
@@ -56,11 +51,12 @@ public class SpringConfig implements WebMvcConfigurer {
 
     @Bean
     public DataSource dataSource(){
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setUrl(environment.getProperty("url"));
-        driverManagerDataSource.setUsername(environment.getProperty("user"));
-        driverManagerDataSource.setPassword(environment.getProperty("password"));
-        return dataSource();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://46.151.28.196:5432/project1");
+        dataSource.setUsername("project1");
+        dataSource.setPassword("password");
+        return dataSource;
     }
 
     @Bean

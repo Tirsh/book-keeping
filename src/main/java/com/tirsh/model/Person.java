@@ -1,26 +1,27 @@
 package com.tirsh.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Person {
-    private int person_id;
+    private int personId;
     private String name;
-    private LocalDateTime localDateTime;
-
-    public Person(int person_id, String name) {
-        this.person_id = person_id;
-        this.name = name;
-    }
+    private LocalDate birthday;
 
     public Person() {
     }
 
-    public int getPerson_id() {
-        return person_id;
+    public Person(int id, String name, LocalDate birthday) {
+        this.personId = id;
+        this.name = name;
+        this.birthday = birthday;
     }
 
-    public void setPerson_id(int person_id) {
-        this.person_id = person_id;
+    public int getId() {
+        return personId;
+    }
+
+    public void setId(int id) {
+        this.personId = id;
     }
 
     public String getName() {
@@ -31,11 +32,11 @@ public class Person {
         this.name = name;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 }
