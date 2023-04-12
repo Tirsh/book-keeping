@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>People list</title>
+    <title>Title</title>
 </head>
 <body>
-<p>This is people list!!!</p>
+<p>Hhhheello!!!</p>
+<div th:each="person : ${people}">
+    <a th:text="${person.getName() + ' ,' + person.getBirthday()} " href="">Text</a>
+</div>
 
 </body>
 </html>

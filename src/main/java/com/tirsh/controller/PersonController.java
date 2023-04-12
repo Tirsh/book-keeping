@@ -6,8 +6,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 @Controller
@@ -22,14 +25,19 @@ public class PersonController {
     @GetMapping()
     public String show(Model model){
         model.addAttribute("people", personDAO.showAll());
-        System.out.println("data");
         System.out.println(personDAO.showAll());
-        return "/index";
+        return "/people/index";
     }
     @GetMapping("/add")
-    public String add(){
-        personDAO.create(new Person(1, "Val", LocalDate.parse("2002-03-29")));
-        personDAO.create(new Person(1, "Ba", LocalDate.parse("2011-03-20")));
-        return "/people/index";
+    public String add(Model model){
+        model.addAttribute("person", new Person());
+        return "/people/add";
+    }
+
+    @PostMapping
+    public String create(@ModelAttribute("person") @Valid Person person){
+        System.out.println(person);
+        personDAO.create(person);
+        return "redirect:/people";
     }
 }
