@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 public class Person {
-    private int personId;
+    private int person_id;
 
     private String name;
 
@@ -22,12 +22,22 @@ public class Person {
 //        this.birthday = birthday;
 //    }
 
-    public int getId() {
-        return personId;
+
+//    public int getId() {
+//        return personId;
+//    }
+//
+//    public void setId(int person_Id) {
+//        this.personId = personId;
+//    }
+
+
+    public int getPerson_id() {
+        return person_id;
     }
 
-    public void setId(int id) {
-        this.personId = id;
+    public void setPerson_id(int person_id) {
+        this.person_id = person_id;
     }
 
     public String getName() {
@@ -44,5 +54,10 @@ public class Person {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d - %s", person_id, name);
     }
 }

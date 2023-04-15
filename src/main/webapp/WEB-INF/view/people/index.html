@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<p>Hhhheello!!!</p>
+<a th:href="@{/people/add}">Add new</a>
+<hr/>
 <div th:each="person : ${people}">
-    <a th:text="${person.getName() + ' ,' + person.getBirthday()} " href="">Text</a>
+    <a th:text="${person.getName() + ' ,' + person.getBirthday() + '  ' + person.getPerson_id()} " href="">Text</a>
+<!--    <form th:action="@{/people/{id}(id=${person.getPerson_id()})}" th:method="DELETE" th:id="" }">-->
+<!--        <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Delete</a>-->
+<!--    </form>-->
+    <form th:action="@{/people/{id}(id=${person.getPerson_id()})}" th:method="DELETE">
+        <input type="submit" value="Delete">
+    </form>
 </div>
 
 </body>

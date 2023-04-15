@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+<a th:href="@{/books/add}">Add</a>
+<div th:each="book : ${books}">
+  <p th:text="book.getTitle()"></p>
+  <form th:action="@{/books/{id}(id=${book.getBool_id()})}">
+    <input type="submit" value="Delete">
+  </form>
+</div>
+
+</body>
+</html>

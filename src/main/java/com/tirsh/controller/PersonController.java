@@ -5,10 +5,7 @@ import com.tirsh.model.Person;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -38,6 +35,12 @@ public class PersonController {
     public String create(@ModelAttribute("person") @Valid Person person){
         System.out.println(person);
         personDAO.create(person);
+        return "redirect:/people";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete (@PathVariable("id") int id){
+        personDAO.delete(id);
         return "redirect:/people";
     }
 }

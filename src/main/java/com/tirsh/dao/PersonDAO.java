@@ -22,4 +22,8 @@ public class PersonDAO {
     public List<Person> showAll(){
         return jdbcTemplate.query("SELECT * FROM people", new BeanPropertyRowMapper<>(Person.class));
     }
+
+    public void delete(int id){
+        jdbcTemplate.update("DELETE FROM people WHERE person_id=?", id);
+    }
 }

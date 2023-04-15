@@ -3,7 +3,7 @@ package com.tirsh.model;
 import javax.validation.constraints.*;
 
 public class Book {
-    private int id;
+    private int bool_id;
     private Person personId;
 //    @NotEmpty(message = "Name should not be empty")
 //    @Size(min = 2, max = 30, message = "More then 2, less then 30")
@@ -18,12 +18,12 @@ public class Book {
     public Book() {
     }
 
-    public int getId() {
-        return id;
+    public int getBool_id() {
+        return bool_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBool_id(int bool_id) {
+        this.bool_id = bool_id;
     }
 
     public Person getPersonId() {
@@ -58,11 +58,4 @@ public class Book {
         this.year = year;
     }
 
-    public Book(int id, Person personId, String title, String author, int year) {
-        this.id = id;
-        this.personId = personId;
-        this.title = title;
-        this.author = author;
-        this.year = year;
-    }
 }
