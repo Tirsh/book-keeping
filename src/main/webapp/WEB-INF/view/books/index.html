@@ -6,9 +6,11 @@
 </head>
 <body>
 <a th:href="@{/books/add}">Add</a>
+<hr>
 <div th:each="book : ${books}">
-  <p th:text="book.getTitle()"></p>
-  <form th:action="@{/books/{id}(id=${book.getBool_id()})}">
+    <a th:text="${book.getTitle() + ' ,' + book.getAuthor() + '  ' + book.getId() + ' ' + book.getUser_id()} " href="">Text</a>
+    <a th:href="@{/books/{id}/edit(id=${book.getId()})}">Edit</a>
+  <form th:action="@{/books/{id}(id=${book.getId()})}" th:method="DELETE">
     <input type="submit" value="Delete">
   </form>
 </div>

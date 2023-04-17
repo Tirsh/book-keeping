@@ -1,6 +1,7 @@
 package com.tirsh.dao;
 
 import com.tirsh.model.Book;
+import com.tirsh.model.Person;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -19,12 +20,21 @@ public class BookDAO {
         return jdbcTemplate.query("SELECT * FROM books", new BeanPropertyRowMapper<>(Book.class));
     }
 
+    public Book getById(int id){
+        return jdbcTemplate.query("SELECT * FROM books WHERE id=?", new Object[]{id},
+                new BeanPropertyRowMapper<>(Book.class)).stream().findFirst().orElse(null);
+    }
+
     public void create(Book book){
         jdbcTemplate.update("INSERT INTO books(title, author, year) VALUES (? ,?, ?)",
                 book.getTitle(), book.getAuthor(), book.getYear());
     }
 
     public void delete(int id){
-        jdbcTemplate.update("DELETE FROM books WHERE bool_id=?", id);
+        jdbcTemplate.update("DELETE FROM books WHERE id=?", id);
+    }
+
+    public void update(int id, Book book){
+        jdbcTemplate.update("UPDATE books SET title=?, author=?, year=? WHERE id=?", book.getTitle(),  book.getAuthor(), book.getYear(), id);
     }
 }

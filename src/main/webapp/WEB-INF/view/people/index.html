@@ -9,9 +9,7 @@
 <hr/>
 <div th:each="person : ${people}">
     <a th:text="${person.getName() + ' ,' + person.getBirthday() + '  ' + person.getPerson_id()} " href="">Text</a>
-<!--    <form th:action="@{/people/{id}(id=${person.getPerson_id()})}" th:method="DELETE" th:id="" }">-->
-<!--        <a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Delete</a>-->
-<!--    </form>-->
+    <a th:href="@{/people/{id}/edit(id=${person.getPerson_id()})}">Edit</a>
     <form th:action="@{/people/{id}(id=${person.getPerson_id()})}" th:method="DELETE">
         <input type="submit" value="Delete">
     </form>
