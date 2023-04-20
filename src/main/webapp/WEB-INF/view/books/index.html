@@ -8,7 +8,8 @@
 <a th:href="@{/books/add}">Add</a>
 <hr>
 <div th:each="book : ${books}">
-    <a th:text="${book.getTitle() + ' ,' + book.getAuthor() + '  ' + book.getId() + ' ' + book.getUser_id()} " href="">Text</a>
+    <a th:text="${book.getTitle() + ' ,' + book.getAuthor() + '  ' + book.getId() + ' ' + book.getUser_id()} "
+       th:href="@{/books/{id}(id=${book.getId()})}">Text</a>
     <a th:href="@{/books/{id}/edit(id=${book.getId()})}">Edit</a>
   <form th:action="@{/books/{id}(id=${book.getId()})}" th:method="DELETE">
     <input type="submit" value="Delete">

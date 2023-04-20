@@ -1,5 +1,6 @@
 package com.tirsh.controller;
 
+import com.tirsh.dao.BookDAO;
 import com.tirsh.dao.PersonDAO;
 import com.tirsh.model.Person;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,15 +15,16 @@ import java.time.LocalDate;
 @RequestMapping("/people")
 public class PersonController {
     PersonDAO personDAO;
+    BookDAO bookDAO;
 
-    public PersonController(PersonDAO personDAO) {
+    public PersonController(PersonDAO personDAO, BookDAO bookDAO) {
+        this.bookDAO = bookDAO;
         this.personDAO = personDAO;
     }
 
     @GetMapping()
     public String show(Model model){
         model.addAttribute("people", personDAO.showAll());
-        System.out.println(personDAO.showAll());
         return "/people/index";
     }
     @GetMapping("/add")
@@ -54,5 +56,12 @@ public class PersonController {
     public String update(@PathVariable("id") int id, @ModelAttribute("person") Person person){
         personDAO.update(id, person);
         return "redirect:/people";
+    }
+    @GetMapping("/{id}")
+    public String show(@PathVariable("id") int id, Model model){
+        Person person = personDAO.getById(id);
+        model.addAttribute("person", person);
+        model.addAttribute("books", bookDAO.getBooksByPersonId(id));
+        return "/people/show";
     }
 }

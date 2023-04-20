@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${person.getName()}">Person</title>
+</head>
+<body>
+<p th:text="${person.getName()}"></p>
+<p th:text="${person.getBirthday()}"></p>
+
+<div th:each="book : ${books}">
+    <p th:text="${book.getTitle()}"></p>
+</div>
+<div th:if="${#lists.isEmpty(books)}">
+    <p>This person has no books!</p>
+</div>
+
+<a th:href="@{/people}">Back</a>
+
+</body>
+</html>

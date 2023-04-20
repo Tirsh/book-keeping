@@ -37,4 +37,8 @@ public class BookDAO {
     public void update(int id, Book book){
         jdbcTemplate.update("UPDATE books SET title=?, author=?, year=? WHERE id=?", book.getTitle(),  book.getAuthor(), book.getYear(), id);
     }
+
+    public List<Book> getBooksByPersonId(int id) {
+        return jdbcTemplate.query("SELECT * FROM books WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Book.class));
+    }
 }

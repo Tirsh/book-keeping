@@ -8,7 +8,8 @@
 <a th:href="@{/people/add}">Add new</a>
 <hr/>
 <div th:each="person : ${people}">
-    <a th:text="${person.getName() + ' ,' + person.getBirthday() + '  ' + person.getPerson_id()} " href="">Text</a>
+    <a th:text="${person.getName() + ' ,' + person.getBirthday() + '  ' + person.getPerson_id()} "
+       th:href="@{/people/{id}(id=${person.getPerson_id()})}">Text</a>
     <a th:href="@{/people/{id}/edit(id=${person.getPerson_id()})}">Edit</a>
     <form th:action="@{/people/{id}(id=${person.getPerson_id()})}" th:method="DELETE">
         <input type="submit" value="Delete">
