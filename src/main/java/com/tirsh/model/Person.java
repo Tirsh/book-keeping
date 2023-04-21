@@ -16,22 +16,6 @@ public class Person {
     public Person() {
     }
 
-//    public Person(int id, String name, LocalDate birthday) {
-//        this.personId = id;
-//        this.name = name;
-//        this.birthday = birthday;
-//    }
-
-
-//    public int getId() {
-//        return personId;
-//    }
-//
-//    public void setId(int person_Id) {
-//        this.personId = personId;
-//    }
-
-
     public int getPerson_id() {
         return person_id;
     }

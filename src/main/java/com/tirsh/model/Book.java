@@ -4,15 +4,16 @@ import javax.validation.constraints.*;
 
 public class Book {
     private int id;
-    private Person user_id;
-//    @NotEmpty(message = "Name should not be empty")
-//    @Size(min = 2, max = 30, message = "More then 2, less then 30")
+    private Integer user_id;
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "More then 2, less then 30")
     private String title;
-//    @NotEmpty(message = "Name should not be empty")
-//    @Size(min = 2, max = 30, message = "More then 2, less then 30")
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "More then 2, less then 30")
     private String author;
-//    @Min(value = 2000, message = "Too old")
-//    @Max(value = 2050, message = "Incorrect")
+
+    @Min(value = 0, message = "Age should not be negative")
+    @Max(value = 2023, message = "Incorrect")
     private int year;
 
     public Book() {
@@ -26,11 +27,11 @@ public class Book {
         this.id = id;
     }
 
-    public Person getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Person user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 

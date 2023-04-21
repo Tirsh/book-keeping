@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/books")
 public class BooksController {
@@ -32,7 +34,7 @@ public class BooksController {
     }
 
     @PostMapping
-    public String create(@ModelAttribute("book") Book book){
+    public String create(@ModelAttribute("book") @Valid Book book){
         bookDAO.create(book);
         return "redirect:/books";
     }
@@ -50,30 +52,26 @@ public class BooksController {
 
     @PatchMapping("/{id}")
     public String update(@PathVariable("id") int id, @ModelAttribute("book") Book book){
-        System.out.println(book);
         bookDAO.update(id, book);
         return "redirect:/books";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model){
+    public String show(@PathVariable("id") int id, Model model, @ModelAttribute("person") Person person){
         model.addAttribute("book", bookDAO.getById(id));
-        model.addAttribute("newPerson", new Person());
         model.addAttribute("people", personDAO.showAll());
         return "/books/show";
     }
 
     @PatchMapping("/{id}/free")
     public String free(@PathVariable("id") int id){
-        //TODO Edit
-        bookDAO.getById(id).setUser_id(null);
+        bookDAO.setNullUserId(id);
         return "redirect:/books";
     }
 
     @PatchMapping("/{id}/take")
-    public String take(@PathVariable("id") int id, @ModelAttribute("newPerson") Person person){
-        //TODO person id
-        System.out.println(person.getPerson_id());
+    public String take(@PathVariable("id") int id, @ModelAttribute("person") Person person){
+        bookDAO.setUserId(id, person.getPerson_id());
         return "redirect:/books";
     }
 }
