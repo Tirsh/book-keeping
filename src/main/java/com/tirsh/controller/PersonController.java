@@ -2,14 +2,14 @@ package com.tirsh.controller;
 
 import com.tirsh.dao.BookDAO;
 import com.tirsh.dao.PersonDAO;
+import com.tirsh.model.Book;
 import com.tirsh.model.Person;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/people")
@@ -61,6 +61,7 @@ public class PersonController {
     public String show(@PathVariable("id") int id, Model model){
         Person person = personDAO.getById(id);
         model.addAttribute("person", person);
+        List<Book> books = bookDAO.getBooksByPersonId(id);
         model.addAttribute("books", bookDAO.getBooksByPersonId(id));
         return "/people/show";
     }

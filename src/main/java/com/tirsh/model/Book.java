@@ -1,19 +1,20 @@
 package com.tirsh.model;
-
 import javax.validation.constraints.*;
 
 public class Book {
     private int id;
     private Integer user_id;
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "More then 2, less then 30")
+
+    @NotEmpty(message = "Title should not be empty!!!")
+    @Size(min = 2, max = 50, message = "Title should be between 2 and 100 characters!")
     private String title;
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "More then 2, less then 30")
+
+    @NotEmpty(message = "Author should not be empty!!!")
+    @Size(min = 2, max = 50, message = "Author should be between 2 and 100 characters!")
     private String author;
 
-    @Min(value = 0, message = "Age should not be negative")
-    @Max(value = 2023, message = "Incorrect")
+
+    @Min(value = 0, message = "Year should be greater then zero!")
     private int year;
 
     public Book() {

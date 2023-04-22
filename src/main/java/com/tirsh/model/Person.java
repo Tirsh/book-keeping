@@ -1,8 +1,6 @@
 package com.tirsh.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 public class Person {
